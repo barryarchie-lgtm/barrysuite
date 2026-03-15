@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barry Suite — Brand & Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #111010; --paper: #F7F5F0; --warm-gray: #9A9590;
+    --accent: #C8A96E; --light-rule: #E2DDD6;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+display: flex; align-items: center; justify-content: space-between;
+padding: 1.5rem 3rem; background: var(–paper); border-bottom: 1px solid var(–light-rule);
+}
+.nav-logo { font-family: var(–serif); font-size: 1.25rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(–ink); text-decoration: none; }
+.nav-logo span { color: var(–accent); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(–warm-gray); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(–ink); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 0; }
+.nav-toggle span { display: block; width: 22px; height: 1px; background: var(–ink); transition: all 0.3s; }
+
+.hero { min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 7rem 3rem 4rem; gap: 4rem; }
+.hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(–accent); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+.hero-headline { font-family: var(–serif); font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
+.hero-headline em { font-style: italic; color: var(–warm-gray); }
+.hero-sub { font-size: 0.95rem; line-height: 1.8; color: var(–warm-gray); max-width: 380px; margin-bottom: 3rem; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
+.hero-cta { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(–ink); text-decoration: none; border-bottom: 1px solid var(–ink); padding-bottom: 2px; transition: gap 0.3s; opacity: 0; animation: fadeUp 0.8s 0.65s forwards; }
+.hero-cta:hover { gap: 1.25rem; }
+.hero-visual { display: flex; flex-direction: column; gap: 1.5rem; opacity: 0; animation: fadeIn 1s 0.5s forwards; }
+.hero-stat { border-top: 1px solid var(–light-rule); padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: baseline; }
+.stat-number { font-family: var(–serif); font-size: 3rem; font-weight: 300; letter-spacing: -0.02em; }
+.stat-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(–warm-gray); }
+.hero-badge { align-self: flex-end; width: 110px; height: 110px; border-radius: 50%; border: 1px solid var(–light-rule); display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(–serif); font-size: 0.85rem; line-height: 1.4; animation: spin 20s linear infinite; }
+
+.marquee-wrap { border-top: 1px solid var(–light-rule); border-bottom: 1px solid var(–light-rule); overflow: hidden; padding: 1.25rem 0; }
+.marquee-inner { display: flex; gap: 4rem; white-space: nowrap; animation: marquee 18s linear infinite; }
+.marquee-item { font-family: var(–serif); font-size: 1.5rem; font-style: italic; color: var(–warm-gray); flex-shrink: 0; }
+.marquee-dot { color: var(–accent); margin: 0 1rem; }
+
+.about { padding: 8rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(–accent); margin-bottom: 1.5rem; }
+.about-heading { font-family: var(–serif); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 2rem; }
+.about-body { font-size: 0.95rem; line-height: 1.9; color: var(–warm-gray); }
+.about-body p + p { margin-top: 1.25rem; }
+.about-right { display: flex; flex-direction: column; gap: 2rem; }
+.about-card { padding: 2rem; border: 1px solid var(–light-rule); display: flex; gap: 1.5rem; align-items: flex-start; transition: border-color 0.3s; }
+.about-card:hover { border-color: var(–accent); }
+.about-card-icon { font-family: var(–serif); font-size: 2rem; color: var(–accent); line-height: 1; flex-shrink: 0; }
+.about-card-title { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.about-card-text { font-size: 0.85rem; line-height: 1.7; color: var(–warm-gray); }
+
+.services { padding: 6rem 3rem; background: var(–ink); color: var(–paper); }
+.services-header { margin-bottom: 4rem; }
+.services-header .section-label { color: var(–accent); }
+.services-heading { font-family: var(–serif); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.service-item { padding: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1); border-right: 1px solid rgba(255,255,255,0.1); transition: background 0.3s; }
+.service-item:nth-child(3n) { border-right: none; }
+.service-item:hover { background: rgba(200,169,110,0.08); }
+.service-num { font-family: var(–serif); font-size: 0.85rem; color: var(–accent); margin-bottom: 1.5rem; }
+.service-name { font-family: var(–serif); font-size: 1.4rem; font-weight: 300; margin-bottom: 1rem; }
+.service-desc { font-size: 0.82rem; line-height: 1.8; color: rgba(247,245,240,0.5); }
+
+.portfolio { padding: 8rem 3rem; }
+.portfolio-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+.portfolio-heading { font-family: var(–serif); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; }
+.portfolio-link { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(–warm-gray); text-decoration: none; border-bottom: 1px solid var(–light-rule); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+.portfolio-link:hover { color: var(–ink); border-color: var(–ink); }
+.portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.portfolio-item { aspect-ratio: 4/3; position: relative; overflow: hidden; cursor: pointer; }
+.portfolio-item:first-child { grid-row: span 2; aspect-ratio: auto; }
+.portfolio-overlay { position: absolute; inset: 0; background: var(–ink); opacity: 0; transition: opacity 0.4s; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; color: var(–paper); }
+.portfolio-item:hover .portfolio-overlay { opacity: 0.92; }
+.portfolio-tag { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(–accent); margin-bottom: 0.5rem; }
+.portfolio-name { font-family: var(–serif); font-size: 1.4rem; font-weight: 300; }
+.portfolio-bg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.portfolio-bg-text { font-family: var(–serif); font-size: 5rem; font-weight: 300; color: rgba(255,255,255,0.25); }
+
+.contact { padding: 8rem 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.contact-heading { font-family: var(–serif); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; }
+.contact-sub { font-size: 0.9rem; line-height: 1.8; color: var(–warm-gray); margin-bottom: 2.5rem; }
+.contact-info { display: flex; flex-direction: column; gap: 1.25rem; }
+.contact-row { display: flex; gap: 1rem; align-items: baseline; }
+.contact-key { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(–accent); width: 80px; flex-shrink: 0; }
+.contact-val { font-size: 0.9rem; color: var(–ink); text-decoration: none; }
+.contact-val:hover { text-decoration: underline; }
+.contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(–warm-gray); }
+.form-input, .form-textarea { border: none; border-bottom: 1px solid var(–light-rule); background: transparent; padding: 0.75rem 0; font-family: var(–sans); font-size: 0.9rem; font-weight: 300; color: var(–ink); outline: none; transition: border-color 0.2s; width: 100%; }
+.form-input:focus, .form-textarea:focus { border-color: var(–accent); }
+.form-textarea { resize: none; height: 120px; }
+.form-btn { align-self: flex-start; padding: 1rem 2.5rem; background: var(–ink); color: var(–paper); border: none; cursor: pointer; font-family: var(–sans); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; transition: background 0.3s; }
+.form-btn:hover { background: var(–accent); }
+
+footer { padding: 2rem 3rem; border-top: 1px solid var(–light-rule); display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 0.75rem; color: var(–warm-gray); }
+.footer-socials { display: flex; gap: 2rem; }
+.footer-socials a { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(–warm-gray); text-decoration: none; transition: color 0.2s; }
+.footer-socials a:hover { color: var(–ink); }
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes spin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+
+@media (max-width: 768px) {
+nav { padding: 1.25rem 1.5rem; }
+.nav-links { display: none; flex-direction: column; gap: 2rem; position: fixed; inset: 0; background: var(–paper); justify-content: center; align-items: center; z-index: 99; }
+.nav-links.open { display: flex; }
+.nav-links a { font-size: 1.1rem; }
+.nav-toggle { display: flex; }
+.hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 2rem; min-height: auto; }
+.hero-visual { display: none; }
+.about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+.services { padding: 4rem 1.5rem; }
+.services-grid { grid-template-columns: 1fr; }
+.service-item { border-right: none; }
+.portfolio { padding: 4rem 1.5rem; }
+.portfolio-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+.portfolio-grid { grid-template-columns: 1fr; }
+.portfolio-item:first-child { grid-row: auto; aspect-ratio: 4/3; }
+.contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+}
+</style>
+
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">Barry<span>.</span>Suite</a>
+  <button class="nav-toggle" id="toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Brand & Marketing Studio</p>
+    <h1 class="hero-headline">Brands that <em>speak</em> before you do.</h1>
+    <p class="hero-sub">Barry Suite is a boutique brand and marketing consultancy helping businesses articulate who they are — and why it matters.</p>
+    <a class="hero-cta" href="#contact">Start a project →</a>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-stat"><span class="stat-number">40+</span><span class="stat-label">Brands Shaped</span></div>
+    <div class="hero-stat"><span class="stat-number">7</span><span class="stat-label">Years in Practice</span></div>
+    <div class="hero-stat"><span class="stat-number">3×</span><span class="stat-label">Avg. Revenue Growth</span></div>
+    <div class="hero-badge">Strategy<br>&<br>Story</div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Brand Strategy</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Visual Identity</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Content Marketing</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Campaign Development</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Social Media</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Brand Consulting</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Brand Strategy</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Visual Identity</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Content Marketing</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Campaign Development</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Social Media</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Brand Consulting</span><span class="marquee-dot">·</span>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div>
+    <p class="section-label">Who We Are</p>
+    <h2 class="about-heading">Clarity is the most powerful brand asset.</h2>
+    <div class="about-body">
+      <p>Barry Suite Branding is a full-service brand and marketing consultancy founded on a simple belief: the best brands don't shout — they resonate.</p>
+      <p>We work with founders, creatives, and growth-stage businesses to develop identities that feel true, strategies that perform, and stories that stick.</p>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-card"><div class="about-card-icon">✦</div><div><p class="about-card-title">Boutique & Focused</p><p class="about-card-text">We take on select clients to ensure every project receives full attention and genuine investment.</p></div></div>
+    <div class="about-card"><div class="about-card-icon">◎</div><div><p class="about-card-title">Strategy-First</p><p class="about-card-text">Every creative decision is rooted in research, positioning, and a clear understanding of your audience.</p></div></div>
+    <div class="about-card"><div class="about-card-icon">→</div><div><p class="about-card-title">Results-Oriented</p><p class="about-card-text">Beautiful brands that convert — we track what matters and iterate until it works.</p></div></div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-header">
+    <p class="section-label">What We Do</p>
+    <h2 class="services-heading">End-to-end brand<br>& marketing support.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-item"><p class="service-num">01</p><p class="service-name">Brand Strategy</p><p class="service-desc">Positioning, messaging architecture, competitive differentiation, and brand voice development.</p></div>
+    <div class="service-item"><p class="service-num">02</p><p class="service-name">Visual Identity</p><p class="service-desc">Logo systems, typography, color palettes, and brand guidelines built to scale.</p></div>
+    <div class="service-item"><p class="service-num">03</p><p class="service-name">Content Marketing</p><p class="service-desc">Editorial planning, copywriting, and content that builds authority and drives organic growth.</p></div>
+    <div class="service-item"><p class="service-num">04</p><p class="service-name">Social Media</p><p class="service-desc">Strategy, content creation, and community management across all major platforms.</p></div>
+    <div class="service-item"><p class="service-num">05</p><p class="service-name">Campaign Development</p><p class="service-desc">Integrated campaigns — from concept through execution — that move audiences to act.</p></div>
+    <div class="service-item"><p class="service-num">06</p><p class="service-name">Brand Consulting</p><p class="service-desc">Audits, workshops, and ongoing advisory for brands navigating growth or reinvention.</p></div>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header">
+    <div><p class="section-label">Selected Work</p><h2 class="portfolio-heading">Brands we've built<br>& grown.</h2></div>
+    <a class="portfolio-link" href="#contact">See all work →</a>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <div class="portfolio-bg" style="background:linear-gradient(135deg,#D4C5A9,#B8A88A)"><span class="portfolio-bg-text">W</span></div>
+      <div class="portfolio-overlay"><p class="portfolio-tag">Lifestyle Brand</p><p class="portfolio-name">Wander & Wit</p></div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-bg" style="background:linear-gradient(135deg,#C5CED4,#8A9BA8)"><span class="portfolio-bg-text">A</span></div>
+      <div class="portfolio-overlay"><p class="portfolio-tag">E-Commerce</p><p class="portfolio-name">Azura Home</p></div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-bg" style="background:linear-gradient(135deg,#D4C9C5,#A88B8A)"><span class="portfolio-bg-text">N</span></div>
+      <div class="portfolio-overlay"><p class="portfolio-tag">Restaurant Group</p><p class="portfolio-name">Nori & Co.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div>
+    <p class="section-label">Let's Talk</p>
+    <h2 class="contact-heading">Ready to build something worth remembering?</h2>
+    <p class="contact-sub">We'd love to hear about your brand. Whether starting from scratch or ready for a refresh, reach out and let's explore what's possible.</p>
+    <div class="contact-info">
+      <div class="contact-row"><span class="contact-key">Email</span><a class="contact-val" href="mailto:hello@barrysuite.com">hello@barrysuite.com</a></div>
+      <div class="contact-row"><span class="contact-key">Web</span><a class="contact-val" href="#">barrysuite.com</a></div>
+      <div class="contact-row"><span class="contact-key">Based In</span><span class="contact-val">United States</span></div>
+    </div>
+  </div>
+  <form class="contact-form" onsubmit="return false;">
+    <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" placeholder="First & Last"></div>
+    <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@example.com"></div>
+    <div class="form-group"><label class="form-label">Tell us about your project</label><textarea class="form-textarea" placeholder="What are you building?"></textarea></div>
+    <button class="form-btn" type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p class="footer-copy">© 2025 Barry Suite Branding. All rights reserved.</p>
+  <div class="footer-socials"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+</footer>
+<script>
+  const toggle = document.getElementById('toggle');
+  const nav = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+</script>
+</body>
+</html>
