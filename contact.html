@@ -157,7 +157,9 @@
   .cal-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
   .calendar-placeholder h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 300; margin-bottom: 0.8rem; }
   .calendar-placeholder p { font-size: 0.85rem; color: var(--warm); margin-bottom: 1.5rem; line-height: 1.7; }
-  .cal-btn {
+  .calendly-wrap { border: 1px solid var(--stone); overflow: hidden; background: var(--paper); }
+  .cal-btn { display: inline-block; padding: 0.85rem 2rem; background: var(--ink); color: var(--paper); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s; }
+  .cal-btn:hover { background: var(--warm); }
     display: inline-block; padding: 0.85rem 2rem;
     background: var(--ink); color: var(--paper); text-decoration: none;
     font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
@@ -351,7 +353,7 @@
       <div class="side-block">
         <div class="side-label">Direct</div>
         <h3>Prefer to reach out directly?</h3>
-        <p>Email me at <a href="/cdn-cgi/l/email-protection#2d4f4c5f5f546d4f4c5f5f545e58445948034e4240"><span class="__cf_email__" data-cfemail="60020112121920020112121913150914054e030f0d">[email&#160;protected]</span></a> or connect on <a href="https://www.instagram.com" target="_blank">Instagram</a>.</p>
+        <p>Email me at <a href="mailto:barry@barrysuite.com">barry@barrysuite.com</a> or connect on <a href="https://www.instagram.com" target="_blank">Instagram</a>.</p>
       </div>
       <div class="side-block">
         <div class="side-label">Services</div>
@@ -431,17 +433,13 @@
     </div>
 
     <div class="fade-in">
-      <div class="calendar-placeholder">
-        <span class="cal-icon">📅</span>
-        <h3>Select a time</h3>
-        <p>Pick a time that works for you — you'll receive a confirmation and a calendar invite right away.</p>
-        <a href="https://calendly.com/barryarchie" target="_blank" class="cal-btn">Book a Time →</a>
-        <div class="cal-divider">
-          <div class="cal-divider-line"></div>
-          <span class="cal-divider-text">or</span>
-          <div class="cal-divider-line"></div>
+      <!-- Calendly inline widget -->
+      <div class="calendly-wrap">
+        <div class="calendly-inline-widget"
+          data-url="https://calendly.com/barryarchie?hide_gdpr_banner=1&background_color=F8F6F2&text_color=111010&primary_color=9A8C7E"
+          style="min-width:280px;height:700px;">
         </div>
-        <button class="btn-submit" style="margin: 0 auto;" onclick="document.querySelector('[data-tab=contact]').click()">Send a Message Instead</button>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </div>
       <p style="margin-top: 1.2rem; font-size: 0.78rem; color: var(--stone); line-height: 1.7;">
         <strong style="font-weight: 400; color: var(--warm);">Prefer email?</strong> Reach out at <a href="mailto:barry@barrysuite.com" style="color: var(--warm);">barry@barrysuite.com</a> and I'll get back to you within 48 hours.
@@ -485,7 +483,7 @@
   </nav>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Mobile menu
   document.getElementById('hamburger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
   document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
@@ -517,12 +515,4 @@
   document.getElementById('contactForm').addEventListener('submit', e => {
     e.preventDefault();
     document.getElementById('contactForm').style.display = 'none';
-    document.querySelector('.form-intro').style.display = 'none';
-    document.getElementById('contactSuccess').classList.add('show');
-  });
-
-  // Fade in observer
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeo
+    document.querySelector('.form-intro').style.display = 'non
